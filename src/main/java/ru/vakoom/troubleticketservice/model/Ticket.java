@@ -16,6 +16,11 @@ public class Ticket {
     ScrapperOffer scrapperOffer;
     String productIds;
     LocalDateTime createdTime;
-    boolean inProgress;
-    boolean resolved;
+    @Column(columnDefinition = "varchar(255) default 'NEW'", nullable = false)
+    @Enumerated(EnumType.STRING)
+    Status status;
+
+    public enum Status {
+        NEW, IN_PROGRESS, RESOLVED
+    }
 }

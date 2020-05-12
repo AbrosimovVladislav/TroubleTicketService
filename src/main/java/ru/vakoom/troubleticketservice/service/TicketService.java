@@ -19,8 +19,7 @@ public class TicketService {
 
     public Ticket resolve(Long ticketId) {
         Ticket ticket = findById(ticketId);
-        ticket.setResolved(true);
-        ticket.setInProgress(false);
+        ticket.setStatus(Ticket.Status.RESOLVED);
         return ticketRepository.save(ticket);
     }
 
@@ -36,5 +35,12 @@ public class TicketService {
 
     public List<Ticket> findAll() {
         return ticketRepository.findAll();
+    }
+
+    public Ticket setTicketInProgress(Long id) {
+        Optional<Ticket> ticket = ticketRepository.findById(id);
+        if (ticket.isEmpty()) return new Ticket();
+        ticket.get().setStatus(Ticket.Status.IN_PROGRESS);
+        return ticketRepository.save(ticket.get());
     }
 }

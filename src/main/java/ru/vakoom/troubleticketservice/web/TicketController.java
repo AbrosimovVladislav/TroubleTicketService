@@ -26,6 +26,12 @@ public class TicketController {
     }
 
     @CrossOrigin
+    @GetMapping("/inProgress/{id}")
+    public Ticket setTicketInProgress(@PathVariable Long id){
+        return ticketService.setTicketInProgress(id);
+    }
+
+    @CrossOrigin
     @GetMapping("/tickets")
     public List<Ticket> getTickets() {
         return ticketService.findAll();
