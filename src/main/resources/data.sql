@@ -429,3 +429,11 @@ ON CONFLICT (type_id) DO UPDATE
     SET upper     = excluded.upper,
         medium    = excluded.medium,
         show_name = excluded.show_name;;
+
+INSERT INTO role(name) VALUES ('ROLE_ADMIN') ON CONFLICT DO NOTHING;
+INSERT INTO role(name) VALUES ('ROLE_OPERATOR') ON CONFLICT DO NOTHING;
+INSERT INTO account(username, password, role_id) VALUES ('mikola', '$2a$10$AjHGc4x3Nez/p4ZpvFDWeO6FGxee/cVqj5KHHnHfuLnIOzC5ag4fm', 1)
+    ON CONFLICT (username) DO UPDATE SET
+        username = excluded.username,
+        password = excluded.password,
+        role_id = excluded.role_id;;

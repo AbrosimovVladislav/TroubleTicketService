@@ -1,4 +1,4 @@
-package ru.vakoom.troubleticketservice.web;
+package ru.vakoom.troubleticketservice.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
