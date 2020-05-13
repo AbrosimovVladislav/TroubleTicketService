@@ -1,0 +1,1 @@
+INSERT INTO public.account (id, password, username, role_id) VALUES (1, '$2a$10$AjHGc4x3Nez/p4ZpvFDWeO6FGxee/cVqj5KHHnHfuLnIOzC5ag4fm', 'mikola', 1);
