@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class TicketController {
+public class TicketApiController implements TicketApi {
 
     private final TicketService ticketService;
     private final MatcherClient matcherClient;
@@ -45,7 +45,7 @@ public class TicketController {
 
     @CrossOrigin
     @GetMapping("/resolveTicket")
-    public Ticket resolve(@ModelAttribute MatcherOffer matcherOffer, @RequestParam Long ticketId) {
+    public Ticket setTicketResolve(@ModelAttribute MatcherOffer matcherOffer, @RequestParam Long ticketId) {
         Type type = typeService.findByShowName(matcherOffer.getType().getShowName());
         matcherOffer.setType(type);
         matcherClient.createMatcherOffer(matcherOffer);
