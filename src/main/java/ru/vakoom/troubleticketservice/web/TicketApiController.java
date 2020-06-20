@@ -45,7 +45,7 @@ public class TicketApiController implements TicketApi {
 
     @CrossOrigin
     @GetMapping("/resolveTicket")
-    public Ticket resolve(@ModelAttribute MatcherOffer matcherOffer, @RequestParam Long ticketId) {
+    public Ticket setTicketResolve(@ModelAttribute MatcherOffer matcherOffer, @RequestParam Long ticketId) {
         Type type = typeService.findByShowName(matcherOffer.getType().getShowName());
         matcherOffer.setType(type);
         matcherClient.createMatcherOffer(matcherOffer);

@@ -32,9 +32,9 @@ public interface TicketApi {
             response = Ticket.class)
     Ticket getTicket(@PathVariable Long id);
 
-    @ApiOperation(value = "Resolve",
+    @ApiOperation(value = "Set ticket resolve",
             notes = "Get ticket by input id, and set it's status to resolved",
             response = Ticket.class)
-    Ticket resolve(@ModelAttribute MatcherOffer matcherOffer, @RequestParam Long ticketId);
+    Ticket setTicketResolve(@ModelAttribute MatcherOffer matcherOffer, @RequestParam Long ticketId);
 
 }
