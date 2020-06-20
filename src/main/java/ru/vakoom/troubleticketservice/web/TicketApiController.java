@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class TicketController {
+public class TicketApiController implements TicketApi {
 
     private final TicketService ticketService;
     private final MatcherClient matcherClient;
