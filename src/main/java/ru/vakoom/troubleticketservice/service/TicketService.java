@@ -25,7 +25,10 @@ public class TicketService {
 
     public Ticket saveNewTicket(Ticket ticket) {
         Optional<ScrapperOffer> scrapperOffer = scrapperOfferRepository.findByLink(ticket.getScrapperOffer().getLink());
-        if (scrapperOffer.isEmpty()) ticketRepository.save(ticket);
+        if (scrapperOffer.isEmpty()) {
+            ticket.setStatus(Ticket.Status.NEW);
+            ticketRepository.save(ticket);
+        }
         return ticketRepository.findByScrapperOffer(scrapperOffer.get());
     }
 
