@@ -27,9 +27,8 @@ public class TicketService {
         Optional<ScrapperOffer> scrapperOffer = scrapperOfferRepository.findByLink(ticket.getScrapperOffer().getLink());
         if (scrapperOffer.isEmpty()) {
             ticket.setStatus(Ticket.Status.NEW);
-            ticketRepository.save(ticket);
-        }
-        return ticketRepository.findByScrapperOffer(scrapperOffer.get());
+            return ticketRepository.save(ticket);
+        } else return ticketRepository.findByScrapperOffer(scrapperOffer.get());
     }
 
     public Ticket findById(Long id) {
