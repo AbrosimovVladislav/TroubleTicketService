@@ -10,10 +10,7 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ ubuntu-18.04 }}
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK
