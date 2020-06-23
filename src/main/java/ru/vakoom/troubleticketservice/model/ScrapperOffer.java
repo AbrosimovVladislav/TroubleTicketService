@@ -23,6 +23,7 @@ public class ScrapperOffer {
     @JoinColumn(name = TYPE_ID, nullable = false)
     private Type type;
     private String shopName;
+    @Column(length = 1023)
     private String link;
     private String age;
     @JsonIgnore
