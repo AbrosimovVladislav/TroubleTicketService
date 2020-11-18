@@ -16,7 +16,7 @@ spring:
         client:
           url: http://localhost:8085
           instance:
-            name: ScrappingService
+            name: TroubleTicket
     banner:
       location=banner.txt:
     datasource:
