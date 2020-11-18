@@ -17,25 +17,25 @@ spring:
           url: http://localhost:8085
           instance:
             name: ScrappingService
-  banner:
-    location=banner.txt:
-  datasource:
-    username: postgres
-    password: root
-    url: jdbc:postgresql://localhost:5432/troubleticketservice
-    driver-class-name: org.postgresql.Driver
-    initialization-mode: always
-    separator: ;;
-  jpa:
-    show-sql: true
-    database: postgresql
-    hibernate:
-      ddl-auto: update
-    properties:
+    banner:
+      location=banner.txt:
+    datasource:
+      username: postgres
+      password: root
+      url: jdbc:postgresql://localhost:5432/troubleticketservice
+      driver-class-name: org.postgresql.Driver
+      initialization-mode: always
+      separator: ;;
+    jpa:
+      show-sql: true
+      database: postgresql
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQL9Dialect
-        jdbc.lob.non_contextual_creation: true
-        format_sql: true
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQL9Dialect
+          jdbc.lob.non_contextual_creation: true
+          format_sql: true
 logging:
   file:
     name: tt.log
