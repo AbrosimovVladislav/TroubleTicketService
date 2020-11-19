@@ -34,11 +34,11 @@ public class TicketService {
             return ticketRepository.save(ticket);
         } else {
             Ticket existingTicket = ticketRepository.findByScrapperOffer(scrapperOffer.get());
-            log.info("Ticket already existed. Id {}, Status {}, Date {}, Offer {}",
-                    existingTicket.getId(),
-                    existingTicket.getStatus(),
-                    existingTicket.getCreatedTime(),
-                    existingTicket.getScrapperOffer().getLink());
+//            log.info("Ticket already existed. Id {}, Status {}, Date {}, Offer {}",
+//                    existingTicket.getId(),
+//                    existingTicket.getStatus(),
+//                    existingTicket.getCreatedTime(),
+//                    existingTicket.getScrapperOffer().getLink());
             return existingTicket;
         }
     }
