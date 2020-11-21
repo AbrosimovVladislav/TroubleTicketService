@@ -10,6 +10,7 @@ import ru.vakoom.troubleticketservice.repo.TicketRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,22 +26,13 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public Ticket saveNewTicket(Ticket ticket) {
-        log.info("Start working on ticket for offer: {}", ticket.getScrapperOffer().getLink());
-        Optional<ScrapperOffer> scrapperOffer = scrapperOfferRepository.findByLink(ticket.getScrapperOffer().getLink());
-        if (scrapperOffer.isEmpty()) {
-            log.info("There is no already added ticket for offer: {}. Start process of ticket creation", ticket.getScrapperOffer().getLink());
-            ticket.setStatus(Ticket.Status.NEW);
-            return ticketRepository.save(ticket);
-        } else {
-            Ticket existingTicket = ticketRepository.findByScrapperOffer(scrapperOffer.get());
-//            log.info("Ticket already existed. Id {}, Status {}, Date {}, Offer {}",
-//                    existingTicket.getId(),
-//                    existingTicket.getStatus(),
-//                    existingTicket.getCreatedTime(),
-//                    existingTicket.getScrapperOffer().getLink());
-            return existingTicket;
-        }
+    public List<Ticket> saveNewTickets(List<Ticket> tickets) {
+        List<Ticket> savedTickets = tickets.stream()
+                .filter(t -> scrapperOfferRepository.findByLink(t.getScrapperOffer().getLink()).isEmpty())
+                .map(t -> ticketRepository.save(t.setStatus(Ticket.Status.NEW)))
+                .collect(Collectors.toList());
+        log.info("Number of saved tickets: {}",savedTickets.size());
+        return savedTickets;
     }
 
     public Ticket findById(Long id) {

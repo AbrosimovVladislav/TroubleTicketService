@@ -1,6 +1,8 @@
 package ru.vakoom.troubleticketservice.web;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.vakoom.troubleticketservice.client.MatcherClient;
 import ru.vakoom.troubleticketservice.model.MatcherOffer;
@@ -11,6 +13,7 @@ import ru.vakoom.troubleticketservice.service.TypeService;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class TicketApiController implements TicketApi {
@@ -20,14 +23,15 @@ public class TicketApiController implements TicketApi {
     private final TypeService typeService;
 
     @PostMapping("/tickets")
-    public Ticket createNewTicket(@RequestBody Ticket ticket) {
-        ticket.getScrapperOffer().setId(null);
-        return ticketService.saveNewTicket(ticket);
+    public ResponseEntity<List<Ticket>> saveTickets(@RequestBody List<Ticket> tickets) {
+        log.info("Number of tickets from incoming request :{}", tickets.size());
+        tickets.forEach(t -> t.getScrapperOffer().setId(null));
+        return ResponseEntity.ok(ticketService.saveNewTickets(tickets));
     }
 
     @CrossOrigin
     @GetMapping("/inProgress/{id}")
-    public Ticket setTicketInProgress(@PathVariable Long id){
+    public Ticket setTicketInProgress(@PathVariable Long id) {
         return ticketService.setTicketInProgress(id);
     }
 

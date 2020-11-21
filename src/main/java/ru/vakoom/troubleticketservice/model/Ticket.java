@@ -1,12 +1,14 @@
 package ru.vakoom.troubleticketservice.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Accessors(chain = true)
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

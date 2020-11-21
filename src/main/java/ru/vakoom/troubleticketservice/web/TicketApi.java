@@ -1,6 +1,7 @@
 package ru.vakoom.troubleticketservice.web;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ public interface TicketApi {
     @ApiOperation(value = "Create new ticket",
             notes = "Create new ticket and save it to db",
             response = Ticket.class)
-    Ticket createNewTicket(@RequestBody Ticket ticket);
+    ResponseEntity<List<Ticket>> saveTickets(@RequestBody List<Ticket> tickets);
 
     @ApiOperation(value = "Set ticket in progress",
             notes = "Get ticket by input id, and set it's status to in progress",
