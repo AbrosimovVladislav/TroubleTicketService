@@ -10,6 +10,7 @@ import ru.vakoom.troubleticketservice.model.Ticket;
 import ru.vakoom.troubleticketservice.model.Type;
 import ru.vakoom.troubleticketservice.service.TicketService;
 import ru.vakoom.troubleticketservice.service.TypeService;
+import ru.vakoom.troubleticketservice.service.logging.MeasurePerformance;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class TicketApiController implements TicketApi {
     private final MatcherClient matcherClient;
     private final TypeService typeService;
 
+
+    @MeasurePerformance
     @PostMapping("/tickets")
     public ResponseEntity<List<Ticket>> saveTickets(@RequestBody List<Ticket> tickets) {
         log.info("Number of tickets from incoming request :{}", tickets.size());
